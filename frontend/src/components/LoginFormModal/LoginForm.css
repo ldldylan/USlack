@@ -1,0 +1,49 @@
+
+.credential {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 0px;
+    font-weight: 500;
+    font-size: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    /* width: 396px;
+    height: 38px; */
+    text-align: left;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+}
+
+.password {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 0px;
+    font-weight: 500;
+    font-size: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    /* width: 396px;
+    height: 38px; */
+    text-align: left;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+}
+
+.log-in-button {
+    display: flex;
+    justify-content: center;
+    width: 422px;
+    height: 64px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    background-color: #dd3333;
+    color:white;
+    font-weight: bold;
+    font-size: medium;
+    
+}
