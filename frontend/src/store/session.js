@@ -26,7 +26,7 @@ const storeCurrentUser = user => {
     if (user) sessionStorage.setItem("currentUser", JSON.stringify(user));
     else sessionStorage.removeItem("currentUser");
 }
-// You need to call the API to login then set the session user from the response, so add a thunk action for the POST /api/session. Make sure to use the custom csrfFetch function from frontend/src/store/csrf.js. The POST /api/session route expects the request body to have a key of credential with an existing username or email and a key of password. After the response from the AJAX call comes back, parse the JSON body of the response, and dispatch the action for setting the session user to the user in the response's body.
+// You need to call the API to login then set the session user from the response, so add a thunk action for the POST /api/session. Make sure to use the custom csrfFetch function from frontend/src/store/csrf.js. The POST /api/session route expects the request body to have a key of credential with an existing email and a key of password. After the response from the AJAX call comes back, parse the JSON body of the response, and dispatch the action for setting the session user to the user in the response's body.
 
 // login thunk action
 export const login = ({ credential, password }) => async dispatch => {
@@ -42,11 +42,10 @@ export const login = ({ credential, password }) => async dispatch => {
 
 // signup thunk action
 export const signup = (user) => async (dispatch) => {
-    const {username, email, password} = user;
+    const {email, password} = user;
     const response = await csrfFetch('/api/users', {
         method: 'post',
         body: JSON.stringify({
-            username,
             email,
             password
         })

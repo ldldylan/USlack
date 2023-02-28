@@ -4,7 +4,9 @@
 #
 #  id              :bigint           not null, primary key
 #  email           :string           not null
-#  username        :string           not null
+#  display_name    :string           not null
+#  title           :string
+#  status          :string
 #  password_digest :string           not null
 #  session_token   :string           not null
 #  created_at      :datetime         not null
@@ -13,10 +15,10 @@
 class User < ApplicationRecord
   has_secure_password
 
-  validates :username, 
-    uniqueness: true, 
-    length: { in: 3..30 }, 
-    format: { without: URI::MailTo::EMAIL_REGEXP, message:  "can't be an email" }
+  # validates :username, 
+  #   uniqueness: true, 
+  #   length: { in: 3..30 }, 
+  #   format: { without: URI::MailTo::EMAIL_REGEXP, message:  "can't be an email" }
   
   validates :email, 
     uniqueness: true, 
@@ -35,8 +37,8 @@ class User < ApplicationRecord
     # find the user whose email/username is equal to `credential`
     if credential.match?URI::MailTo::EMAIL_REGEXP
       user = User.find_by_email(credential)
-    else
-      user = User.find_by_username(credential)
+    # else
+    #   user = User.find_by_username(credential)
     end
     # if no such user exists, return a falsey value
     
