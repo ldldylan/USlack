@@ -1,5 +1,5 @@
 {
-  "name": "authenticate-me",
+  "name": "USlack",
   "version": "1.0.0",
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "directories": {
@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ldldylan/Authenticate-Me.git"
+    "url": "git+https://github.com/ldldylan/USlack.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ldldylan/Authenticate-Me/issues"
+    "url": "https://github.com/ldldylan/USlack/issues"
   },
-  "homepage": "https://github.com/ldldylan/Authenticate-Me#readme"
+  "homepage": "https://github.com/ldldylan/USlack#readme"
 }
