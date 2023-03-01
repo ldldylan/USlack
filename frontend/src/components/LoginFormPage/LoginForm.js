@@ -57,17 +57,6 @@
 
 // export default LoginForm;
 
-
-
-
-
-// Render a form with a controlled input for the user login credential (username or email) and a controlled input for the user password.
-
-// On submit of the form, dispatch the login thunk action with the form input values. Make sure to handle and display errors from the login thunk action if there are any.
-
-// Export the LoginFormPage component as the default at the bottom of the file, then render it in App.js at the /login route.
-
-// If there is a current session user in the Redux store, then redirect the user to the / path if trying to access the LoginFormPage.
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
