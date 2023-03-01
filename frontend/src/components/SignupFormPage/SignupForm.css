@@ -23,7 +23,6 @@
     font-weight: 650;
 }
 
-
 .signup-box h1 {
     font-family: Slack-Larsseit, Helvetica Neue, Helvetica, Segoe UI, Tahoma, Arial, sans-serif;
     font-size: 48px;
@@ -81,7 +80,7 @@
     width: 100%;
     font-size: 20px;
     font-weight: 700;
-    height: 38px;
+    height: 44px;
     min-width: 96px;
     border-radius: 4px;
     text-align: center;
@@ -93,20 +92,20 @@
     cursor: pointer;
 }
 
-.signin-option p {
+.login-option p {
     font-family: Slack-Larsseit, Helvetica Neue, Helvetica, Segoe UI, Tahoma, Arial, sans-serif;
     line-height: 40px;
 }
 
-.signin-link {
+.login-link {
     text-decoration: none;
 }
 
-.signin-link p {
+.login-link p {
     color:#1264a3
 }
 
-.signin-link:hover {
+.login-link:hover {
     cursor: pointer;
     text-decoration: underline;
     color:#1264a3

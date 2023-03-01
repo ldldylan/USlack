@@ -61,14 +61,6 @@
 
 
 
-
-
-
-
-
-
-
-
 // Render a form with a controlled input for the user login credential (username or email) and a controlled input for the user password.
 
 // On submit of the form, dispatch the login thunk action with the form input values. Make sure to handle and display errors from the login thunk action if there are any.
@@ -79,8 +71,9 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import './LoginForm.css';
+import slackLogo from "../../assests/images/slack-logo.png"
 
 function LoginFormPage(){
     const dispatch = useDispatch();
@@ -110,30 +103,45 @@ function LoginFormPage(){
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map(error => <li key={error}>{error}</li>)}
-            </ul>
-            <label className='credential'>
-                Username or Email
+        <div className='login-box'>
+            <header className="login-header">
+                <NavLink to='/' className="login-logo">
+                    <img src={slackLogo} alt="logo" style={{ height:'40px' }}></img>
+                    <h2>USlack</h2>
+                </NavLink>
+                <div className="signup-option"> 
+                    <p>New to USlack?</p>
+                    <NavLink to={"/signup"} className="signup-link">
+                        <p>Create an account</p>
+                    </NavLink>
+                </div>
+            </header>
+            <h1>Sign in to USlack</h1>
+            <p id='suggestion'>We suggest using the <strong>email address you use at work.</strong></p>
+            
+            <form className='login-form' onSubmit={handleSubmit}>
                 <input
                     type="text"
+                    className='login-email'
                     value={credential}
                     onChange={(e) => setCredential(e.target.value)}
+                    placeholder="name@work-email.com"
                     required
                 />
-            </label>
-            <label className='password'>
-                Password
                 <input
                     type="password"
+                    className='login-password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    placeholder="password"
                     required
-                />
-            </label>
-            <button className='Log-in-button' type="submit">Log In</button>
-        </form>
+                    />
+                <button className='login-button' type="submit">Sign In With Email</button>
+                <ul>
+                    {errors.map(error => <li key={error}>{error}</li>)}
+                </ul>
+            </form>
+        </div>
     );
 }
 

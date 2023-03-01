@@ -84,9 +84,9 @@ function SignupFormPage() {
                     {errors.map(error => <li key={error}>{error}</li>)}
                 </ul>
             </form>
-            <div className="signin-option">
+            <div className="login-option">
                 <p>Already using USlack?</p>
-                <NavLink to={"/login"} className="signin-link">
+                <NavLink to={"/login"} className="login-link">
                     <p >Sign in to an existing workspace</p>
                 </NavLink>
             </div>
