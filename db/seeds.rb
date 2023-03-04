@@ -114,12 +114,12 @@ ApplicationRecord.transaction do
   
     workspace_1_general = Channel.create!(name: 'general', description: 'This is the one channel that will always include everyone. It’s a great spot for announcements and team-wide conversations.', 
     owner_id: demo_user_1.id, 
-    workspace_id: @workspace.id
+    workspace_id: workspace_1.id
     )
 
     workspace_1_random = Channel.create!(name: 'random', description: 'This channel is for... well, everything else. It’s a place for team jokes, spur-of-the-moment ideas, and funny GIFs. Go wild!', 
     owner_id: demo_user_1.id, 
-    workspace_id: @workspace.id
+    workspace_id: workspace_1.id
     )
 
     workspace_1_announcements = Channel.create!(
@@ -130,15 +130,15 @@ ApplicationRecord.transaction do
 
     workspace_2_general = Channel.create!(name: 'general', description: 'This is the one channel that will always include everyone. It’s a great spot for announcements and team-wide conversations.', 
     owner_id: demo_user_1.id, 
-    workspace_id: @workspace.id
+    workspace_id: workspace_2.id
     )
 
     workspace_2_random = Channel.create!(name: 'random', description: 'This channel is for... well, everything else. It’s a place for team jokes, spur-of-the-moment ideas, and funny GIFs. Go wild!', 
     owner_id: demo_user_1.id, 
-    workspace_id: @workspace.id
+    workspace_id: workspace_2.id
     )
 
-    workspace_2_channel_announcements = Channel.create!(
+    workspace_2_help_requests = Channel.create!(
       name: "help-requests",
       owner_id: demo_user_2.id,
       workspace_id: workspace_2.id
@@ -146,42 +146,92 @@ ApplicationRecord.transaction do
 
     workspace_3_general = Channel.create!(name: 'general', description: 'This is the one channel that will always include everyone. It’s a great spot for announcements and team-wide conversations.', 
     owner_id: demo_user_1.id, 
-    workspace_id: @workspace.id
+    workspace_id: workspace_3.id
     )
 
     workspace_3_random = Channel.create!(name: 'random', description: 'This channel is for... well, everything else. It’s a place for team jokes, spur-of-the-moment ideas, and funny GIFs. Go wild!', 
     owner_id: demo_user_1.id, 
-    workspace_id: @workspace.id
+    workspace_id: workspace_3.id
     )
 
     workspace_4_general = Channel.create!(name: 'general', description: 'This is the one channel that will always include everyone. It’s a great spot for announcements and team-wide conversations.', 
     owner_id: demo_user_1.id, 
-    workspace_id: @workspace.id
+    workspace_id: workspace_4.id
     )
 
     workspace_4_random = Channel.create!(name: 'random', description: 'This channel is for... well, everything else. It’s a place for team jokes, spur-of-the-moment ideas, and funny GIFs. Go wild!', 
     owner_id: demo_user_1.id, 
-    workspace_id: @workspace.id
+    workspace_id: workspace_4.id
     )
 
     workspace_5_general = Channel.create!(name: 'general', description: 'This is the one channel that will always include everyone. It’s a great spot for announcements and team-wide conversations.', 
     owner_id: demo_user_2.id, 
-    workspace_id: @workspace.id
+    workspace_id: workspace_5.id
     )
 
     workspace_5_random = Channel.create!(name: 'random', description: 'This channel is for... well, everything else. It’s a place for team jokes, spur-of-the-moment ideas, and funny GIFs. Go wild!', 
     owner_id: demo_user_2.id, 
-    workspace_id: @workspace.id
+    workspace_id: workspace_5.id
     )
 
     puts "Creating channel subscriptions..."
     ChannelSubscription.create!(
-      channel_id: workspace_1announcements.id,
+      channel_id: workspace_1_general.id,
+      user_id: demo_user_1.id
+    )
+    
+    ChannelSubscription.create!(
+      channel_id: workspace_1_random.id,
       user_id: demo_user_1.id
     )
 
     ChannelSubscription.create!(
-      channel_id: workspace_2announcements.id,
+      channel_id: workspace_1_announcements.id,
+      user_id: demo_user_1.id
+    )
+      
+    ChannelSubscription.create!(
+      channel_id: workspace_2_general.id,
+      user_id: demo_user_1.id
+    )
+
+    ChannelSubscription.create!(
+      channel_id: workspace_2_random.id,
+      user_id: demo_user_1.id
+    )
+
+    ChannelSubscription.create!(
+      channel_id: workspace_2_help_requests.id,
+      user_id: demo_user_1.id
+    )
+
+    ChannelSubscription.create!(
+      channel_id: workspace_3_general.id,
+      user_id: demo_user_1.id
+    )
+
+    ChannelSubscription.create!(
+      channel_id: workspace_3_random.id,
+      user_id: demo_user_1.id
+    )
+
+    ChannelSubscription.create!(
+      channel_id: workspace_4_general.id,
+      user_id: demo_user_1.id
+    )
+
+    ChannelSubscription.create!(
+      channel_id: workspace_4_random.id,
+      user_id: demo_user_1.id
+    )
+
+    ChannelSubscription.create!(
+      channel_id: workspace_5_general.id,
+      user_id: demo_user_1.id
+    )
+
+    ChannelSubscription.create!(
+      channel_id: workspace_5_random.id,
       user_id: demo_user_1.id
     )
     
