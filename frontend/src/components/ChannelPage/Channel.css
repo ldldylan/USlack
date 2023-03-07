@@ -1,0 +1,109 @@
+/* .top-nav {
+    background: #350d36;
+    box-shadow: 0 1px 0 0 rgb(255 255 255 / 10%);
+    -webkit-app-region: drag;
+    align-items: center;
+    background: rgba(var(--sk_primary_foreground,29,28,29),.07);
+    color: var(--p-channel_sidebar__top-nav-text);
+    display: flex;
+    grid-area: p-top_nav;
+    justify-content: center;
+    min-width: 0;
+    position: relative;
+} */
+
+.channel-container {
+    height: 100%;
+}
+.channel-top-nav{
+    display: flex;
+    box-shadow: 0 1px 0 0 hsl(0deg 0% 100% / 10%);
+    background: #350d36;
+    justify-content: center;
+    height: 4vh;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.channel-side-bar {
+    display: flex;
+    flex-direction: column;
+    background-color: #3f0e40;
+    color:white;
+    font-size: 20px;
+    height: 96vh;
+    width: 19vw;
+}
+
+.workspace-name-edit {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.33334;
+    min-height: 50px;
+    border-bottom: 1px solid #522653;
+    padding: 0, 16px, 0, 16px;
+}
+
+#workspace-name{    
+    display: block;
+    font-weight: 900;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.channels-list {
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+.show-channels {
+    height: 28px;
+    line-height: 28px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#show-channels-button {
+    padding: 0 16px;
+}
+
+.hide-channels {
+    display: none;
+}
+
+.channel-item{
+    font:15px;
+    padding: 0 16px;
+    align-items: center;
+    display: flex;
+}
+
+.channel-item:hover {
+    cursor:pointer;
+}
+
+.add-channels {
+    height: 28px;
+    line-height: 28px;
+    padding: 10px 16px 10px 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.add-channels:hover {
+    cursor: pointer;
+}
+
+#add-channels-button {
+    background: hsla(0,0%,100%,.1);
+    padding: 2px 6px;
+}
+
+#add-channels-word {
+    padding: 0 0 0 8px;
+}

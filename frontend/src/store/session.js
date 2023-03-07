@@ -1,13 +1,13 @@
 import csrfFetch from "./csrf"
 import { restoreCSRF } from "./csrf";
 
-const SET_CURRENT_USER = 'session/setCurrentUser';
+export const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CUREENT_USER = 'session/removeCurrentUser';
 
-const setCurrentUser = (user) => {
+const setCurrentUser = (payload) => {
     return {
         type: SET_CURRENT_USER,
-        payload: user
+        payload
     }
 }
 
@@ -29,6 +29,15 @@ const storeCurrentUser = user => {
 // You need to call the API to login then set the session user from the response, so add a thunk action for the POST /api/session. Make sure to use the custom csrfFetch function from frontend/src/store/csrf.js. The POST /api/session route expects the request body to have a key of credential with an existing email and a key of password. After the response from the AJAX call comes back, parse the JSON body of the response, and dispatch the action for setting the session user to the user in the response's body.
 
 // login thunk action
+export const getUser = () => async dispatch => {
+    // debugger
+    const response = await csrfFetch("/api/session")
+    // debugger
+    const data = await response.json();
+    dispatch(setCurrentUser(data));
+    
+}
+
 export const login = ({ credential, password }) => async dispatch => {
     const response = await csrfFetch("/api/session", {
         method: "POST",
@@ -36,7 +45,7 @@ export const login = ({ credential, password }) => async dispatch => {
     });
     const data = await response.json();
     storeCurrentUser(data.user);
-    dispatch(setCurrentUser(data.user));
+    dispatch(setCurrentUser(data));
     return response;
 };
 
@@ -83,7 +92,11 @@ const initialState = {
 const sessionReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CURRENT_USER:
-            return { ...state, user: action.payload};
+            // debugger
+            if (!action.payload){
+                return {user: null}
+            }
+            else return { ...state, user: action.payload.user};
         case REMOVE_CUREENT_USER:
             return { ...state, user: null};
         default:
