@@ -91,8 +91,7 @@ export const deleteWorkspace = (workspaceId) => async dispatch => {
 export default function workspacesReducer(state = {}, action) {
     switch (action.type) {
         case SET_CURRENT_USER:
-            // debugger
-            if (!action.payload) return state;
+            if (!action.payload || !action.payload.workspaces) return state;
             else return action.payload.workspaces
             
         case RECEIVE_WORKSPACES:
