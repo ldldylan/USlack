@@ -11,10 +11,11 @@ class Api::ChannelsController < ApplicationController
         @workspace = Workspace.find_by_id(@channel.workspace_id)
         
         if @channel.save
-            # @workspace.users.each do |user| 
-            #     @channel_subscription = ChannelSubscription.create(channel_id: @channel.id, user_id: user.id)
-            # end
-            ChannelSubscription.create(channel_id: @channel.id, user_id: current_user.id)
+            debugger
+            @workspace.users.each do |user| 
+                @channel_subscription = ChannelSubscription.create(channel_id: @channel.id, user_id: user.id)
+            end
+            # ChannelSubscription.create(channel_id: @channel.id, user_id: current_user.id)
             render :show
         else
             render json:@channel.errors.full_messages, status: 422

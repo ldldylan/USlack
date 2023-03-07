@@ -38,6 +38,7 @@ module AuthenticateMe
     # config.action_dispatch.default_headers = {
     #   'X-Frame-Options' => 'SAMEORIGIN'
     # }
+    config.railties_order = [:all, :main_app]
     
     config.api_only = true
     config.middleware.use ActionDispatch::Cookies
@@ -46,4 +47,5 @@ module AuthenticateMe
       same_site: :lax, 
       secure: Rails.env.production?
     end
+
 end

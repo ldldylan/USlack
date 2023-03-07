@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_01_193954) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_181743) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_193954) do
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_channels_on_owner_id"
     t.index ["workspace_id"], name: "index_channels_on_workspace_id"
+  end
+
+  create_table "direct_messages", force: :cascade do |t|
+    t.bigint "workspace_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["workspace_id"], name: "index_direct_messages_on_workspace_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "text", null: false
+    t.bigint "author_id", null: false
+    t.string "messageable_type"
+    t.bigint "messageable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_messages_on_author_id"
+    t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_01_193954) do
   add_foreign_key "channel_subscriptions", "users"
   add_foreign_key "channels", "users", column: "owner_id"
   add_foreign_key "channels", "workspaces"
+  add_foreign_key "direct_messages", "workspaces"
+  add_foreign_key "messages", "users", column: "author_id"
   add_foreign_key "workspace_subscriptions", "users"
   add_foreign_key "workspace_subscriptions", "workspaces"
   add_foreign_key "workspaces", "users", column: "owner_id"

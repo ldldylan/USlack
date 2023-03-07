@@ -27,6 +27,5 @@ class Channel < ApplicationRecord
         through: :channel_subscriptions,
         dependent: :destroy
 
-    # has_many :messages,
-    #     dependent: :destroy
+    has_many :messages, as: :messageable
 end
