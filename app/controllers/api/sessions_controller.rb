@@ -13,13 +13,16 @@ class Api::SessionsController < ApplicationController
   end
 
   def create
+    # debugger
     # pass the credentials from the request body, stored under top level keys of credential and password, to User::find_by_credentials; save the result to @user
     # if a user with matching credentials was found (i.e., @user is truthy):
     #   login @user
     #   render @user as JSON, under a top-level key of user
     #   if no user was found (i.e., @user is falsey):
     #   render { errors: ['The provided credentials were invalid.'] } as JSON, with a status of :unauthorized
+    
     @user = User.find_by_credentials(params[:credential], params[:password])
+    # debugger
     if @user 
       login!(@user)
       # render json: {user: @user}
