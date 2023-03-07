@@ -15,17 +15,17 @@ class Workspace < ApplicationRecord
         foreign_key: :owner_id,
         class_name: :User
     
-    has_many :workspaces_subscriptions,
+    has_many :workspace_subscriptions,
         dependent: :destroy
 
     has_many :channels,
         dependent: :destroy
     
     has_many :users, 
-        through: :workspaces_subscriptions,
+        through: :workspace_subscriptions,
         source: :user,
         dependent: :destroy
 
-    has_many :messages,
-        dependent: :destroy
+    # has_many :messages,
+    #     dependent: :destroy
 end

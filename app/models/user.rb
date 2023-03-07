@@ -30,6 +30,34 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  has_many :workspaces,
+    foreign_key: :owner_id,
+    class_name: :Workspace,
+    dependent: :destroy
+
+  has_many :workspace_subscriptions,
+    foreign_key: :user_id,
+    class_name: :WorkspaceSubscription,
+    dependent: :destroy
+
+  has_many :subscript_workspaces,
+    through: :workspace_subscriptions,
+    source: :workspace
+
+  has_many :channels,
+    foreign_key: :owner_id,
+    class_name: :Channel,
+    dependent: :destroy
+
+  has_many :channel_subscriptions,
+    foreign_key: :user_id,
+    class_name: :ChannelSubscription,
+    dependent: :destroy
+
+  has_many :subscript_channels,
+    through: :channel_subscriptions,
+    source: :channel
+
   def self.find_by_credentials(credential, password)
     # determine the field you need to query: 
     #   * `email` if `credential` matches `URI::MailTo::EMAIL_REGEXP`
