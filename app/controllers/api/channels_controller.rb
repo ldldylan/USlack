@@ -11,7 +11,7 @@ class Api::ChannelsController < ApplicationController
         @workspace = Workspace.find_by_id(@channel.workspace_id)
         
         if @channel.save
-            debugger
+            # debugger
             @workspace.users.each do |user| 
                 @channel_subscription = ChannelSubscription.create(channel_id: @channel.id, user_id: user.id)
             end
@@ -23,7 +23,7 @@ class Api::ChannelsController < ApplicationController
     end
 
     def update
-        @channel = channel.find_by(id: params[:id])
+        @channel = Channel.find_by(id: params[:id])
         if @channel.update(channel_params)
             render :show
         else
@@ -32,7 +32,7 @@ class Api::ChannelsController < ApplicationController
     end 
 
     def destroy        
-        @channel = channel.find_by(id: params[:id])
+        @channel = Channel.find_by(id: params[:id])
         if @channel 
             if @channel.owner_id == current_user.id 
                 @channel.destroy()

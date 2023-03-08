@@ -6,6 +6,7 @@ class Api::WorkspacesController < ApplicationController
 
     def show
         @workspace = Workspace.find_by(id: params[:id])
+        @subscript_channels = @current_user.subscript_channels.select{|subscript_channel| subscript_channel.workspace_id == @workspace.id} 
         render :show
     end
 
