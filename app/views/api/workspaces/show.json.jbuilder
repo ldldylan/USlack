@@ -19,10 +19,17 @@ json.workspacesSubscription do
 end
 
 json.users do 
-    # debugger
     @workspace.users.each do |user| 
         json.set! user.id do 
             json.extract! user, :id, :display_name, :email
+        end
+    end
+end
+
+json.subscriptChannels do 
+    @subscript_channels.each do |subscript_channel|
+        json.set! subscript_channel.id do 
+            json.extract! subscript_channel, :id, :name, :workspace_id
         end
     end
 end
