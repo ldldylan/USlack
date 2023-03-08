@@ -11,7 +11,11 @@ ApplicationRecord.transaction do
   # Unnecessary if using `rails db:seed:replant`
   User.destroy_all
   Workspace.destroy_all
+  WorkspaceSubscription.destroy_all
   Channel.destroy_all
+  ChannelSubscription.destroy_all
+  Message.destroy_all
+  
   
   puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
@@ -20,6 +24,7 @@ ApplicationRecord.transaction do
   ApplicationRecord.connection.reset_pk_sequence!('workspace_subscriptions')
   ApplicationRecord.connection.reset_pk_sequence!('channels')
   ApplicationRecord.connection.reset_pk_sequence!('channel_subscriptions')
+  ApplicationRecord.connection.reset_pk_sequence!('messages')
 
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
@@ -38,13 +43,13 @@ ApplicationRecord.transaction do
     )
 
     # More users
-    10.times do 
-      User.create!({
-        display_name: Faker::Internet.unique.username(specifier: 3),
-        email: Faker::Internet.unique.email,
-        password: 'password'
-      }) 
-    end
+    # 10.times do 
+    #   User.create!({
+    #     display_name: Faker::Internet.unique.username(specifier: 3),
+    #     email: Faker::Internet.unique.email,
+    #     password: 'password'
+    #   }) 
+    # end
 
     puts "Creating workspaces..."
 
@@ -108,7 +113,6 @@ ApplicationRecord.transaction do
       workspace_id: workspace_5.id,
       user_id: demo_user_2.id
     )
-
 
     puts "Creating channels..."
   
@@ -235,5 +239,34 @@ ApplicationRecord.transaction do
       user_id: demo_user_1.id
     )
     
+    puts "Creating messages..."
+    Message.create!(
+      text: 'Hey yo!',
+      author_id: 1,
+      messageable_type: 'Channel',
+      messageable_id: 1
+    )
+
+    Message.create!(
+      text: "What's up",
+      author_id: 2,
+      messageable_type: 'Channel',
+      messageable_id: 1
+    )
+
+    Message.create!(
+      text: 'Hey yo!',
+      author_id: 1,
+      messageable_type: 'Channel',
+      messageable_id: 2
+    )
+
+    Message.create!(
+      text: "What's up",
+      author_id: 2,
+      messageable_type: 'Channel',
+      messageable_id: 2
+    )
+
     puts "Done!"
   end

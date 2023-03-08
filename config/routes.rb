@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :workspace_subscriptions, only:[:create, :destroy] 
     resources :channels, only: [:show, :create, :update, :destroy]
     resources :messages, only: [:show, :create, :update, :destroy]
+    resources :direct_messages, only: [:show, :create, :update, :destroy]
   end
   
   get '*path', to: "static_pages#frontend_index"

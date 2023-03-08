@@ -1,7 +1,7 @@
 class Api::ChannelsController < ApplicationController
     def show
         @channel = Channel.find_by_id(params[:id])
-        render `api/channels/show`
+        render :show
     end
     
     def create

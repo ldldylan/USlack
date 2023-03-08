@@ -10,7 +10,7 @@ json.workspaces do
     end
 end
 
-json.subscript_workspaces do
+json.subscriptWorkspaces do
     @user.subscript_workspaces.each do |subscript_workspace|
     json.set! subscript_workspace.id do
             json.extract! subscript_workspace, :id, :name, :owner_id, :users, :channels

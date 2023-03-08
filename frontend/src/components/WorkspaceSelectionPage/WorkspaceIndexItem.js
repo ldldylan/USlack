@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import './Workspace.css'
+import './WorkspaceSelection.css'
 
 export default function WorkspaceIndexItem({subscriptWorkspace}) {
     const currentUser = useSelector((state) => state.session.user);
@@ -13,5 +13,5 @@ export default function WorkspaceIndexItem({subscriptWorkspace}) {
         <h1 >{subscriptWorkspace.name}</h1>
         <NavLink to={`/clients/${currentUser.id}/workspaces/${subscriptWorkspace.id}`} className="launch-workspace-button">LAUNCH USLACK</NavLink>
     </div>
-    )
+)
 }
