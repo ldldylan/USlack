@@ -45,9 +45,10 @@ export const fetchWorkspaces = () => async dispatch => {
 
 export const fetchWorkspace = (workspaceId) => async dispatch => {
     const response = await csrfFetch(`/api/workspaces/${workspaceId}`);
-
+    
     if (response.ok) {
     const workspace = await response.json();
+    // debugger
     dispatch(receiveWorkspace(workspace));
     }
 };

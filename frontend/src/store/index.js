@@ -6,6 +6,7 @@ import subscriptWorkspacesReducer from './subscriptWorkspaces';
 import channelReducer from './channels';
 import subscriptChannelsReducer from './subscriptChannels';
 import usersReducer from './users';
+import messageReducer from './message';
 
 const rootReducer = combineReducers ({
     session: sessionReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers ({
     workspaces: workspacesReducer,
     subscriptWorkspaces: subscriptWorkspacesReducer,
     channels: channelReducer,
-    subscriptChannels: subscriptChannelsReducer
+    subscriptChannels: subscriptChannelsReducer,
+    messages: messageReducer
 })
 
 let enhancer;

@@ -8,6 +8,7 @@ export default function subscriptWorkspacesReducer(state= {}, action) {
                 return state;
             } 
             else {
+                // debugger
                 return action.payload.subscriptWorkspaces
             } 
         default:

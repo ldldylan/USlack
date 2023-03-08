@@ -1,5 +1,7 @@
 import csrfFetch from "./csrf";
 import { SET_CURRENT_USER } from "./session";
+import { RECEIVE_WORKSPACE } from "./workspaces";
+import { RECEIVE_MESSAGES } from "./message";
 
 export const RECEIVE_CHANNELS = "channels/RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "channels/RECEIVE_CHANNEL";
@@ -13,10 +15,10 @@ export const receiveChannels = (channels) => {
     };
 };
 
-export const receiveChannel = (channel) => {
+export const receiveChannel = (payload) => {
     return {
         type: RECEIVE_CHANNEL,
-        channel
+        payload
     };
 };
 
@@ -36,21 +38,21 @@ export const getWorkspace = (channelId) => (state) => (
 )
 
 // thunk action creators
-export const fetchChannels = (workspaceId) => async (dispatch) => {
-    const responseponse = await csrfFetch(`/api/workspace/${workspaceId}/channels`);
+export const fetchChannels = (workspaceId) => async dispatch => {
+    const response = await csrfFetch(`/api/workspace/${workspaceId}/channels`);
 
-    if (responseponse.ok) {
-        const channel = await responseponse.json();
-        dispatch(receiveChannel(channel));
-        return channel;
+    if (response.ok) {
+        const channels = await response.json();
+        dispatch(receiveChannels(channels));
+        return channels;
     }
 };
 
-export const fetchChannel = (channelId) => async (dispatch) => {
-    const responseponse = await csrfFetch(`/api/channels/${channelId}`);
+export const fetchChannel = (channelId) => async dispatch => {
+    const response = await csrfFetch(`/api/channels/${channelId}`);
 
-    if (responseponse.ok) {
-        const channel = await responseponse.json();
+    if (response.ok) {
+        const channel = await response.json();
         dispatch(receiveChannel(channel));
         return channel;
     }
@@ -99,12 +101,14 @@ export default function channelReducer(state = {}, action) {
             // debugger
             if (!action.payload) return state;
             else return action.payload.channels
-
+        case RECEIVE_WORKSPACE:
+            return action.payload.channels
+        
         case RECEIVE_CHANNELS:
-            return {...action.Channels};
+            return {...action.channels};
             
         case RECEIVE_CHANNEL:
-            const channel = action.channel
+            const channel = action.payload.channel
             return {...state, [channel.id]: channel};
             
         case REMOVE_CHANNEL:
