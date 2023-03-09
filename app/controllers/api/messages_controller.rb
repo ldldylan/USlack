@@ -5,16 +5,19 @@ class Api::MessagesController < ApplicationController
 	end
 
     def create
+        # debugger
         @message = Message.new(message_params)
         @author = User.find_by(id: params[:author_id])
+        
         if @message.save 
             # if @message.messageable_type === 'Channel'
             #     @message.save
             # elsif @message.messageable_type === 'DirectMessage'
             #     @message.save
             # end
+            render :show
         else
-
+            render json:@message.errors.full_messages, status: 422
         end
 
     end
@@ -22,7 +25,7 @@ class Api::MessagesController < ApplicationController
     def update
         @message = Message.find_by(id: params[:id])
         if @message.update(message_params)
-            render:show
+            render :show
         else
             render json:@message.errors.full_messages, status: 422
         end
