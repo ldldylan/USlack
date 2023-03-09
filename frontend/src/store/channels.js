@@ -99,7 +99,7 @@ export default function channelReducer(state = {}, action) {
     switch (action.type) {
         case SET_CURRENT_USER:
             // debugger
-            if (!action.payload) return state;
+            if (!action.payload || !action.payload.user ) return state;
             else return action.payload.channels
         case RECEIVE_WORKSPACE:
             return action.payload.channels

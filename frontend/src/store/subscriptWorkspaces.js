@@ -4,7 +4,7 @@ export default function subscriptWorkspacesReducer(state= {}, action) {
     switch (action.type) {
         case SET_CURRENT_USER:
             // debugger
-            if (!action.payload) {
+            if (!action.payload || !action.payload.user) {
                 return state;
             } 
             else {

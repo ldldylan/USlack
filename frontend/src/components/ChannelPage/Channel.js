@@ -11,6 +11,8 @@ import CreateChannelModal from "../WorkspacePage/CreateChannelModal/CreateChanne
 import { fetchWorkspace } from "../../store/workspaces";
 import { fetchMessages } from "../../store/message";
 import { fetchChannel } from "../../store/channels";
+import MessageIndexItem from "./MessageIndexItem ";
+import { createMessage } from "../../store/message";
 
 export default function Channel() {
     const dispatch = useDispatch();
@@ -22,7 +24,8 @@ export default function Channel() {
     let currentWorkspaceSubscriptChannels = []
     const {channelId} = useParams()
     const currentChannel = useSelector((state) => state.channels[channelId])
-    const messages = useSelector((state) => state.messages)
+    const messages = useSelector((state) => Object.values(state.messages))
+    const [newMessageText, setNewMessageText] = useState('')
     
     allSubscriptChannels.forEach(channel => {
         if (channel.workspaceId === parseInt(workspaceId)) {
@@ -53,10 +56,20 @@ export default function Channel() {
         }
     }, [])
 
-    // useEffect(() => {
-    //     dispatch(fetchMessages(channelId))
-    // }, [])
-    console.log(messages)
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        dispatch(
+            createMessage({
+                text: newMessageText,
+                authorId: currentUser.id,
+                messageableType: "Channel",
+                messageableId: parseInt(channelId)
+            })
+        );
+        setNewMessageText('');
+    }
+
     return allSubscriptChannels.length ? (
         <div className="workspace-page-container">
             <header className="workspace-page-header">
@@ -106,11 +119,38 @@ export default function Channel() {
                         <h2># {currentChannel.name}</h2>
                     </div>
                     <div className="messages-container">
-
+                            {messages.map(message => <MessageIndexItem key={message.id} message={message}/>)}
+                        
                     </div>
                         <div className="new-meesage-container">
-                            new-message
-                            {/* {messages.map} */}
+                            <div className="new-message-top">
+                                
+                            </div>
+                            <div className="new-message-text">
+                                <form onSubmit={onSubmit}>
+                                    <textarea value={newMessageText} onChange={(e) => {
+                                        setNewMessageText(e.target.value)}}/>
+                                </form>
+                            </div>
+                            <div className="new-message-bottom">
+                                <div className="emoji"></div>
+                                <div className={`new-message-send-button${newMessageText.trim().length > 0 ? "-clickable" : ""}`}>
+                                    <button className="send-button" disabled={newMessageText.trim().length === 0}> 
+                                    <svg
+                                        data-y5v="true"
+                                        aria-hidden="true"
+                                        viewBox="0 0 20 20"
+                                        width="16"
+                                        height="16"
+                                    >
+                                    <path
+                                        fill="currentColor"
+                                        d="M1.5 2.25a.755.755 0 0 1 1-.71l15.596 7.807a.73.73 0 0 1 0 1.306L2.5 18.46l-.076.018a.749.749 0 0 1-.924-.728v-4.54c0-1.21.97-2.229 2.21-2.25l6.54-.17c.27-.01.75-.24.75-.79s-.5-.79-.75-.79l-6.54-.17A2.253 2.253 0 0 1 1.5 6.789v-4.54Z"
+                                    />
+                                    </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                 </div>
             </div>

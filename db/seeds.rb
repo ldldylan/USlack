@@ -256,16 +256,23 @@ ApplicationRecord.transaction do
 
     Message.create!(
       text: 'Hey yo!',
-      author_id: 1,
+      author_id: 2,
       messageable_type: 'Channel',
       messageable_id: 2
     )
 
     Message.create!(
       text: "What's up",
-      author_id: 2,
+      author_id: 1,
       messageable_type: 'Channel',
       messageable_id: 2
+    )
+
+        Message.create!(
+      text: 'Welcome',
+      author_id: 2,
+      messageable_type: 'Channel',
+      messageable_id: 3
     )
 
     puts "Done!"
