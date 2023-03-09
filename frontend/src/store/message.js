@@ -12,10 +12,10 @@ export const receiveMessages = (messages) => {
     };
 };
 
-export const receiveMessage = (message) => {
+export const receiveMessage = (payload) => {
     return {
         type: RECEIVE_MESSAGE,
-        message
+        payload
     };
 };
 
@@ -43,10 +43,10 @@ export const fetchMessage = (messageId) => async (dispatch) => {
 }
 
 export const createMessage = (message) => async dispatch => {
+    // debugger
     const response = await csrfFetch(`/api/messages`, {
         method: "POST",
-        headers: { "Content-Type": "appication/json"},
-        body: JSON.stringify(message)
+        body: JSON.stringify({message: message})
     })
     if (response.ok) {
         const newMessage = await response.json();
@@ -55,9 +55,9 @@ export const createMessage = (message) => async dispatch => {
 }
 
 export const updateMessage = (message) => async dispatch => {
+    debugger
     const response = await csrfFetch(`/api/messages/${message.id}`, {
         method: "PATCH",
-        headers: { "Content-Type": "appication/json" },
         body: JSON.stringify(message)
     })
 
@@ -68,6 +68,7 @@ export const updateMessage = (message) => async dispatch => {
 }
 
 export const deleteMessage = (messageId) => async dispatch => {
+    debugger
     const response = await csrfFetch(`/api/messages/${messageId}`, {
         method: "DELETE"
     })
@@ -83,7 +84,7 @@ export default function messageReducer(state = {}, action) {
         case RECEIVE_MESSAGES:
             return {...action.messages}
         case RECEIVE_MESSAGE:
-            const message = action.message
+            const message = action.payload.message
             return {...state, [message.id]: message}
         case REMOVE_MESSAGE:
             const newState = {...state}
