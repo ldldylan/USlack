@@ -31,7 +31,7 @@ export default function WorkspaceSelection() {
         e.preventDefault();
         dispatch(sessionActions.logout()).then(history.push("/"));
     };
-    
+
     return currentUser ? (
         <>
             <div className="workspace-container">

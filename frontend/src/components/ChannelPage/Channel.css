@@ -80,13 +80,14 @@
 .new-message-send-button-clickable {
     background-color: #007a5a;
     color: #fff;
-    /* opacity: 1; */
+    opacity: 1;
     transition: all 80ms linear;
 }
-.send-msg-cont.ready:hover {
+.new-message-send-button-clickable:hover {
     background-color: #148567;
 }
-.send-msg-cont.ready:active {
+
+.new-message-send-button-clickable:active {
     transform: scale(0.95);
 }
 

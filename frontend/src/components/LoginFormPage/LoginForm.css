@@ -92,7 +92,7 @@
     box-sizing: border-box;
 }
 
-.login-button {
+.login-button, .demo1-button, .demo2-button {
     background-color: #4a154b;
     border: none;
     color: #fff;
@@ -103,9 +103,10 @@
     min-width: 96px;
     border-radius: 4px;
     text-align: center;
+    margin-bottom: 15px;
 }
 
-.login-button:hover {
+.login-button:hover, .demo1-button:hover, .demo2-button:hover {
     background-color: #4a154be6;
     border: none;
     cursor: pointer;

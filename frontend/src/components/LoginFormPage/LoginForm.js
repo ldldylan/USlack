@@ -15,10 +15,46 @@ function LoginFormPage(){
     const sessionUser = useSelector(state => state.session.user);
     if (sessionUser) return <Redirect to="/workspaces" />;
 
-    const handleSubmit = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
         setErrors([]);
         return dispatch(sessionActions.login({ credential, password}))
+            .catch(async (res) => {
+                let data;
+                try {
+                    // .clone() essentially allows you to read the response body twice
+                    data = await res.user.clone().json();
+                } catch {
+                    data = await res.user.text(); // Will hit this case if the server is down
+                }
+                if (data?.errors) setErrors(data.errors);
+                else if (data) setErrors([data]);
+                else setErrors([res.statusText]);
+            }).then(histroy.push('/workspaces'))
+    }
+
+    const handleDemo1Login = (e) => {
+        e.preventDefault();
+        setErrors([]);
+        return dispatch(sessionActions.login({ credential: 'demo1@user.io', password: 'password'}))
+            .catch(async (res) => {
+                let data;
+                try {
+                    // .clone() essentially allows you to read the response body twice
+                    data = await res.user.clone().json();
+                } catch {
+                    data = await res.user.text(); // Will hit this case if the server is down
+                }
+                if (data?.errors) setErrors(data.errors);
+                else if (data) setErrors([data]);
+                else setErrors([res.statusText]);
+            }).then(histroy.push('/workspaces'))
+    }
+
+    const handleDemo2Login = (e) => {
+        e.preventDefault();
+        setErrors([]);
+        return dispatch(sessionActions.login({ credential: 'demo2@user.io', password: 'password'}))
             .catch(async (res) => {
                 let data;
                 try {
@@ -50,7 +86,7 @@ function LoginFormPage(){
             <h1>Sign in to USlack</h1>
             <p id='suggestion'>We suggest using the <strong>email address you use at work.</strong></p>
             
-            <form className='login-form' onSubmit={handleSubmit}>
+            <form className='login-form'>
                 <input
                     type="text"
                     className='login-email'
@@ -67,10 +103,15 @@ function LoginFormPage(){
                     placeholder="password"
                     required
                     />
-                <button className='login-button' type="submit">Sign In With Email</button>
                 <ul>
                     {errors.map(error => <li key={error}>{error}</li>)}
                 </ul>
+                <button className='login-button' onClick={(e) => handleLogin(e)}>Sign In With Email</button>
+                <div className='demo-user-option'>
+                    <button className='demo1-button' onClick={(e) => handleDemo1Login(e)}>Sign In As Demo User 1</button>
+                    <button className='demo2-button' onClick={(e) => handleDemo2Login(e)}>Sign In As Demo User 2</button>
+                </div>
+                
             </form>
         </div>
     );

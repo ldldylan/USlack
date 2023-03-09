@@ -1,0 +1,30 @@
+.edit-message-form {
+
+}
+
+.edit-message-form textarea {
+    outline: 0;
+    border-style: none;
+    box-sizing: border-box !important;
+    font-size: 15px !important;
+    line-height: 1.46668;
+    padding: 12px;
+    resize: none;
+    width: 100%;
+}
+
+.edit-message-button-clickable {
+    justify-content: space-between;
+    padding: 4px 12px 6px;
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+}
+
+.edit-message-button {
+    justify-content: space-between;
+    padding: 4px 12px 6px;
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+}

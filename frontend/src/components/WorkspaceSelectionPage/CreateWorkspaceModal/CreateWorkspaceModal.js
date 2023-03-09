@@ -1,29 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { createChannel } from "../../../store/channels";
+import { createworkspace } from "../../../store/workspaces";
 import { getUser } from "../../../store/session";
-export default function CreateChannelModal({showCreateForm, setShowCreateForm}) {
+export default function CreateworkspaceModal({showCreateForm, setShowCreateForm}) {
     const dispatch = useDispatch()
     const currentUser = useSelector((state) => state.session.user)
     const { workspaceId } = useParams();
     const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const handleCreateNewChannel = (e) => {
+    const handleCreateNewworkspace = (e) => {
         e.preventDefault();
         setErrors([]);
     
-        dispatch(createChannel({
+        dispatch(createworkspace({
             name: name,
-            description: description,
-            workspaceId: workspaceId,
             ownerId: currentUser.id})
         );
 
         setName("");
-        setDescription("");
         dispatch(getUser())
     };
     
@@ -38,33 +34,33 @@ export default function CreateChannelModal({showCreateForm, setShowCreateForm}) 
     
     return (
     <>
-        <div className="create-channel-modal" onClick={closeModal}>
-            <div className="create-channel-form" onClick={openModal}>
-                <h1>Create a channel</h1>
-                <p>Channels are where your team communicates. They're best when organized around a topic — #marketing, for example.</p>
+        <div className="create-workspace-modal" onClick={closeModal}>
+            <div className="create-workspace-form" onClick={openModal}>
+                <h1>Create a workspace</h1>
+                <p>workspaces are where your team communicates. They're best when organized around an organization name.</p>
                 <div>
-                    <form onSubmit={handleCreateNewChannel}>
-                        <div className="new-channel-name">
+                    <form onSubmit={handleCreateNewworkspace}>
+                        <div className="new-workspace-name">
                             <label>Name</label>
-                            <input className="new-channel-name-input"
+                            <input className="new-workspace-name-input"
                                     value={name}
                                     placeholder="# e.g. plan-budget"
                                     onChange={(e) => setName(e.target.value)}>
                             </input>
                         </div>
-                        <div className="new-channel-description">
+                        <div className="new-workspace-description">
                             <label>Description</label>
                             <span>{"(optional)"}</span>
-                            <input className="new-channel-description-input"
+                            <input className="new-workspace-description-input"
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}>
                             </input>
-                            <p id='about-text'>What's this channel about?</p>
+                            <p id='about-text'>What's this workspace about?</p>
                         </div>
                         <div>
                             <button
                             disabled={name.trim().length < 1} 
-                            className={`create-channel-button ${name.trim().length > 0 ? "-clickable" : ""
+                            className={`create-workspace-button ${name.trim().length > 0 ? "-clickable" : ""
                             }`}
                             >Create
                             </button>

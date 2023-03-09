@@ -1,0 +1,52 @@
+.message-container {
+
+}
+
+.message-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-delete-options {
+}
+
+.no-edit-delete-option {
+    display: none;
+}
+
+.edit-button {
+    background-color: aliceblue;
+    /* outline: none; */
+    border:none;
+}
+
+.delete-button {
+    background-color: aliceblue;
+    /* outline: none; */
+    border:none;
+}
+
+.edit-modal {
+    font-family: Lato, sans-serif;
+    display:flex;
+    justify-content: center;
+    box-shadow: 1px 0 0 0 rgb(29 28 29 / 13%);
+    font-family: Lato, sans-serif;
+    margin-top: 2px;
+    flex-direction: column;
+    border: 1px solid rgba(21, 20, 21, .295);
+    border-radius: 8px;
+    margin: 0 16px 0 20px;
+}
+
+.delete-modal {
+
+}
+
+.no-edit-modal {
+    display: none;
+}
+
+.no-delete-modal {
+    display: none;
+}

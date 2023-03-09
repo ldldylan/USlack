@@ -8,6 +8,7 @@ import { BsFillCaretDownFill, BsCaretRightFill } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa";
 import CreateChannelModal from "./CreateChannelModal/CreateChannelModal";
 import { fetchWorkspace } from "../../store/workspaces";
+import * as sessionActions from '../../store/session';
 
 export default function Workspace() {
     const dispatch = useDispatch();
@@ -26,6 +27,16 @@ export default function Workspace() {
     
     const [showChannels, setShowChannels] = useState(true)
     const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
+
+    const logout = (e) => {
+        e.preventDefault();
+        dispatch(sessionActions.logout()).then(history.push("/"));
+    };
+
+    const switchWorkspace =(e) => {
+        e.preventDefault();
+        history.push('/workspaces')
+    }
 
     useEffect(() => {
         dispatch(fetchWorkspace(workspaceId))
@@ -56,11 +67,15 @@ export default function Workspace() {
     // }
     // console.log(currentChannel)
 
-    return allSubscriptChannels.length ? (
+    return allSubscriptChannels.length && currentWorkspace ? (
         <div className="workspace-page-container">
             <header className="workspace-page-header">
                 <div className="workspace-page-header-left"></div>
                 <button className="search-bar"></button>
+                <div className="workspace-page-header-right">
+                    <button onClick={switchWorkspace} className="switch-workspace-button">Switch Workspace</button>
+                    <button onClick={logout} className="workspace-page-sign-out-button">Sign Out</button>
+                </div>
             </header>
             <div className="workspace-chat-body">
                 <div></div>
@@ -79,7 +94,6 @@ export default function Workspace() {
                             {currentWorkspaceSubscriptChannels.map(subscriptChannel => <ChannelIndexItem key={subscriptChannel.id} currentUser={currentUser} workspaceId={parseInt(workspaceId)} subscriptChannel={subscriptChannel}/>
                             )}
                         </div>
-
                         <div
                             className="add-channels"
                             onClick={() => setShowCreateChannelModal(!showCreateChannelModal)}
