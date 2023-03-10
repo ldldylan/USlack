@@ -176,3 +176,30 @@
     align-items: center;
     padding-left: 10px;
 }
+
+.different-team-container {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 4px solid hsla(0,0%,100%,.2);
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    position: relative;
+}
+
+.different-team-container-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.woman-laptop-image {
+    border-radius: 5px;
+    margin: -1.03rem 15px -48px -1rem;
+}
+
+.different-team-text  {
+    font-family: Slack-Circular-Pro,Helvetica Neue,Helvetica,Segoe UI,Tahoma,Arial,sans-serif;
+    font-weight: 600!important;
+}

@@ -7,6 +7,7 @@ import * as sessionActions from '../../store/session';
 import wavingHandGif from "../../assests/images/waving-hand.gif"
 import WorkspaceIndexItem from "./WorkspaceIndexItem";
 import { getUser } from "../../store/session";
+import womanWithLaptop from "../../assests/images/woman-with-laptop.png"
 
 export default function WorkspaceSelection() {
     const dispatch = useDispatch();
@@ -64,8 +65,12 @@ export default function WorkspaceSelection() {
                             </div>
                         </div>
                     </div>
-                    <div className="">
-                        
+                    <div className="different-team-container">
+                        <div className="different-team-container-wrapper">
+                            <img className="woman-laptop-image" src={womanWithLaptop}/>
+                            <strong className="different-team-text">Want to use USlack with a different team?</strong>
+                            <div className='different-team-create-button'></div>
+                        </div>
                     </div>
                 </section>
             </div>
