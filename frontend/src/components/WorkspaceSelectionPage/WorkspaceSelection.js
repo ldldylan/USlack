@@ -8,6 +8,7 @@ import wavingHandGif from "../../assests/images/waving-hand.gif"
 import WorkspaceIndexItem from "./WorkspaceIndexItem";
 import { getUser } from "../../store/session";
 import womanWithLaptop from "../../assests/images/woman-with-laptop.png"
+import { NavLink } from "react-router-dom";
 
 export default function WorkspaceSelection() {
     const dispatch = useDispatch();
@@ -46,7 +47,7 @@ export default function WorkspaceSelection() {
                             <div className="workspace-header-buttons">
                                 <button id="header-new-workspace-button">CREATE A NEW WORKSPACE</button>
                                 <button onClick={logout} id="workspace-sign-out-button">SIGN OUT</button>
-                            </div>
+                             </div>
                         </div>
                     </div>
                 </header>
@@ -69,7 +70,15 @@ export default function WorkspaceSelection() {
                         <div className="different-team-container-wrapper">
                             <img className="woman-laptop-image" src={womanWithLaptop}/>
                             <strong className="different-team-text">Want to use USlack with a different team?</strong>
-                            <div className='different-team-create-button'></div>
+                        </div>
+                        <div>
+                            <NavLink
+                                to={`/workspaces`}
+                                style={{ textDecoration: "none", color: "#fff" }}
+                                className="different-team-create-button"
+                            >
+                                CREATE A NEW WORKSPACE
+                            </NavLink>
                         </div>
                     </div>
                 </section>

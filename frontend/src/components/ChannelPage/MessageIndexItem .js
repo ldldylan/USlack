@@ -1,7 +1,7 @@
 import './MessageIndexItem.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteMessage, updateMessage } from '../../store/message';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import EditMessageModal from './EditMessageModal/EditMessageModal';
 import DeleteMessageModal from './DeleteMessageModal/DeleteMessageModal';
 export default function MessageIndexItem({message, currentUser}) {
@@ -15,23 +15,23 @@ export default function MessageIndexItem({message, currentUser}) {
     const [showEditMessageModal, setShowEditMessageModal] = useState(false)
     const [showDeleteMessageModal, setShowDeleteMessageModal] = useState(false)
 
-    // const convertDate = (date) => {
-    //     const time = new Date(date);
-    //     let hours = time.getHours();
-    //     let minutes = time.getMinutes();
-    //     let timeAmPm = time.toLocaleTimeString("en-US", {hour: "2-digit", minute: "2-digit"});
-        
-    //     if ((hours < 10 && hours > 0) || (hours > 12 && hours < 22)) {
-    //         timeAmPm = timeAmPm.slice(1);
-    //     }
-    //     return timeAmPm;
-    // }
+        const convertDate = (time) => {
+        const date = new Date(time);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        const formattedDate = `${month}/${day}/${year} 
+        ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true })}`;
+
+
+        return formattedDate;
+    }
     
     return (
         <div className='message-container'>
             <div className='author-name-and-date'>
                 {author.displayName}
-                {/* <span id='message-time'>{convertDate(message.updatedAt)}</span> */}
+                <span id='message-time'> {convertDate(message.updatedAt)}</span>
             </div>
             <div className='message-text'> 
                 <p>{message.text}</p>

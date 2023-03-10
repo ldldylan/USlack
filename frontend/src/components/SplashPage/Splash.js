@@ -17,9 +17,16 @@ import etsy from "../../assests/images/etsy-logo.png"
 import splashVideo1 from "../../assests/videos/splash-1.mp4"
 import splashVideo2 from "../../assests/videos/splash-2.mp4"
 import splashVideo3 from "../../assests/videos/splash-3.mp4"
+import { useRef } from "react"
 
 
 export default function SplashPage(){
+    const topRef = useRef(null);
+
+    const handleScrollToTop = () => {
+        topRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
     return (
         <>
             <section className="splash-page">
@@ -138,6 +145,54 @@ export default function SplashPage(){
                                 And with powerful tools like Workflow Builder, 
                                 you can automate away routine tasks.</p>
                         </div>
+                    </div>
+                </section>
+
+                <section className="section-4">
+                    <div className="section-4-content">
+                        <h2>Welcome to your new digital HQ</h2>
+                        <div className="section-4-buttons">
+                            <NavLink
+                                to={"/login"}
+                                style={{
+                                    textDecoration: "none",
+                                    color: "#fff",
+                                    
+                                }}
+                                className="section-4-login"
+                            >
+                                Sign In
+                            </NavLink>
+                            <NavLink
+                                to={"/signup"}
+                                style={{ textDecoration: "none", color: "#fff", marginLeft: "1.25rem" }}
+                                className="section-4-sign-up"
+                            >
+                                Sign Up
+                            </NavLink>
+                            
+                        </div>
+                    </div>
+                </section>
+                <section className="section-5">
+                    <div className="section-5-content">
+                        <div onClick={handleScrollToTop} ref={topRef} style={{ cursor: "pointer" }}>
+                            <img src={splashLogo} alt="logo" />
+                        </div>
+                        <a
+                            href="https://github.com/ldldylan/USlack"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <i className="fa-brands fa-github" />
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/dilanglin/"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <i className="fa-brands fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </section>
             </section>
