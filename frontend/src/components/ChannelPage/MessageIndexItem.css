@@ -1,5 +1,14 @@
 .message-container {
+    font-size: 15px;
+    position: relative;
+}
 
+.message-image-container {
+    margin-top: 2px;
+}
+
+.user-image {
+    border-radius: 4px;
 }
 
 .message-text {
@@ -7,7 +16,25 @@
     justify-content: space-between;
 }
 
+.author-name-and-date {
+    margin-bottom: 5px;
+}
+
+#author-name {
+    font-size: 15px;
+    font-weight: 600 !important;
+    line-height: 100%;
+}
+
+
+#message-time {
+    color: #616061;
+        font-size: 12.5px;
+        margin-left: 10px;
+}
+
 .edit-delete-options {
+    /* margin-right: 10px; */
 }
 
 .no-edit-delete-option {
