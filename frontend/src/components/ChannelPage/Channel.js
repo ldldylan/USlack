@@ -75,7 +75,7 @@ export default function Channel() {
         setNewMessageText('');
     }
 
-    return allSubscriptChannels.length ? (
+    return allSubscriptChannels.length && currentUser ? (
         <div className="workspace-page-container">
             <header className="workspace-page-header">
                 <div className="workspace-page-header-left"></div>
