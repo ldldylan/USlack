@@ -13,6 +13,12 @@ import { fetchChannel } from "../../store/channels";
 import MessageIndexItem from "./MessageIndexItem ";
 import { createMessage } from "../../store/message";
 import * as sessionActions from '../../store/session';
+import userImg1 from "../../assests/images/default-user-img-1.png";
+import userImg2 from "../../assests/images/default-user-img-2.png";
+import userImg3 from "../../assests/images/default-user-img-3.png";
+import userImg4 from "../../assests/images/default-user-img-4.png";
+import userImg5 from "../../assests/images/default-user-img-5.png";
+
 
 export default function Channel() {
     const dispatch = useDispatch();
@@ -26,7 +32,7 @@ export default function Channel() {
     const currentChannel = useSelector((state) => state.channels[channelId])
     const messages = useSelector((state) => Object.values(state.messages))
     const [newMessageText, setNewMessageText] = useState('')
-    
+    const usersNum = useSelector((state) => Object.values(state.users).length)
     allSubscriptChannels.forEach(channel => {
         if (channel.workspaceId === parseInt(workspaceId)) {
             currentWorkspaceSubscriptChannels.push(channel)
@@ -126,6 +132,26 @@ export default function Channel() {
                 <div className="chat-window">
                     <div className="channel-name-edit">
                         <h2># {currentChannel.name}</h2>
+                        <div className="members-container">
+                            {usersNum > 1 && usersNum < 3 ? (
+                            <>
+                                <img height={21} width={21} src={userImg1} alt="user-img" />
+                                <img height={21} width={21} src={userImg3} alt="user-img" />
+                                <span style={{ paddingLeft: "5px" }}>
+                                {usersNum}
+                                </span>
+                            </>
+                            ) : usersNum >= 3 ? (
+                            <>
+                                <img height={21} width={21} src={userImg1} alt="user-img" />
+                                <img height={21} width={21} src={userImg3} alt="user-img" />
+                                <img height={21} width={21} src={userImg5} alt="user-img" />
+                                <span style={{ paddingLeft: "7px" }}>
+                                {usersNum}
+                                </span>
+                            </>
+                            ) : null}
+                        </div>
                     </div>
                     <div className="messages-container">
                             {messages.map(message => <MessageIndexItem key={message.id} message={message} currentUser={currentUser}/>)}

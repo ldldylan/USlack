@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { deleteMessage } from "../../../store/message";
+import './DeleteMessageModal.css'
 
 export default function DeleteMessageModal({message, setShowDeleteMessageModal}) {
     const dispatch = useDispatch()
@@ -21,12 +22,14 @@ export default function DeleteMessageModal({message, setShowDeleteMessageModal})
     return (
         <div className="delete-option">
             <p>Are you sure you want to delete this message? This cannot be undone.</p>
-            <button id='cancel-delete-button' onClick={(e) => handleCancelAction(e)}>
-                cancel
-            </button>
-            <button id='confirm-delete-button' onClick={(e) => handleDeleteMessage(e)}>
-                delete
-            </button>
+            <div style={{float:'right'}}>
+                <button id='cancel-delete-button' onClick={(e) => handleCancelAction(e)}>
+                    cancel
+                </button>
+                <button id='confirm-delete-button' onClick={(e) => handleDeleteMessage(e)}>
+                    delete
+                </button>
+            </div>
         </div>
     )
 }

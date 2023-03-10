@@ -49,15 +49,6 @@ ApplicationRecord.transaction do
       title: "Full Stack Developer" 
     )
 
-    # More users
-    # 10.times do 
-    #   User.create!({
-    #     display_name: Faker::Internet.unique.username(specifier: 3),
-    #     email: Faker::Internet.unique.email,
-    #     password: 'password'
-    #   }) 
-    # end
-
     puts "Creating workspaces..."
 
     workspace_1 = Workspace.create!(
@@ -382,6 +373,34 @@ ApplicationRecord.transaction do
       user_id: dilang.id
       )
     
+      # More users
+    more_users = []
+    14.times do 
+      new_user = User.create!({
+        display_name: Faker::Internet.unique.username(specifier: 3),
+        email: Faker::Internet.unique.email,
+        password: 'password'
+      }) 
+      more_users << new_user
+    end
+
+    all_workspaces = [workspace_1, workspace_2, workspace_3, workspace_4, workspace_5]
+    more_users.each do |user|
+      all_workspaces.each do |workspace|
+          WorkspaceSubscription.create!(
+          workspace_id: workspace.id,
+          user_id: user.id
+        )
+        workspace.channels.each do |channel| 
+          ChannelSubscription.create!(
+            channel_id: channel.id,
+            user_id: user.id
+          )
+        end
+      end
+    end
+      
+
     puts "Creating messages..."
     Message.create!(
       text: 'Hey yo!',
@@ -396,27 +415,60 @@ ApplicationRecord.transaction do
       messageable_type: 'Channel',
       messageable_id: 1
     )
+    Message.create!(
+      text: "Gooooooood",
+      author_id: 4,
+      messageable_type: 'Channel',
+      messageable_id: 1
+    )
 
     Message.create!(
-      text: 'Hey yo!',
+      text: "✌",
+      author_id: 3,
+      messageable_type: 'Channel',
+      messageable_id: 1
+    )
+
+    Message.create!(
+      text: 'Hello!',
       author_id: 2,
       messageable_type: 'Channel',
       messageable_id: 2
     )
 
     Message.create!(
-      text: "What's up",
+      text: "Hiiiii",
       author_id: 1,
       messageable_type: 'Channel',
       messageable_id: 2
     )
 
-        Message.create!(
-      text: 'Welcome',
+    Message.create!(
+      text: 'MERN project starts tmr!',
       author_id: 2,
       messageable_type: 'Channel',
       messageable_id: 3
     )
+    
+    Message.create!(
+      text: "let's play super smash bro tonight🤘",
+      author_id: 15,
+      messageable_type: 'Channel',
+      messageable_id: 17
+    )
 
+    Message.create!(
+      text: "let's gooooo💪",
+      author_id: 16,
+      messageable_type: 'Channel',
+      messageable_id: 17
+    )
+
+    Message.create!(
+      text: "👌",
+      author_id: 10,
+      messageable_type: 'Channel',
+      messageable_id: 17
+    )
     puts "Done!"
   end
