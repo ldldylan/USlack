@@ -94,7 +94,10 @@ const sessionReducer = (state = initialState, action) => {
         case SET_CURRENT_USER:
             // debugger
             if (!action.payload){
-                return {user: null}
+                return {...state, user: null}
+            }
+            else if (!action.payload.subscriptChannels) {
+                return {...state, subscriptChannels: null}
             }
             else return { ...state, user: action.payload.user};
         case REMOVE_CUREENT_USER:

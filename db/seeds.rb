@@ -29,14 +29,14 @@ ApplicationRecord.transaction do
     puts "Creating users..."
     # Create one user with an easy to remember username, email, and password:
     demo_user_1 = User.create!(
-      display_name: 'Demo-1', 
+      display_name: 'Demo User 1', 
       email: 'demo1@user.io', 
       password: 'password',
       title: "Full Stack Engineer" 
     )
 
     demo_user_2 = User.create!(
-      display_name: 'Demo-2', 
+      display_name: 'Demo User 2', 
       email: 'demo2@user.io', 
       password: 'password',
       title: "front-end developer" 
@@ -71,29 +71,25 @@ ApplicationRecord.transaction do
     )
 
     workspace_3 = Workspace.create!(
-      name: "Front-end development",
+      name: "PC Gaming",
       owner_id: demo_user_1.id
     )
-    
+
     workspace_4 = Workspace.create!(
-      name: "Movies",
+      name: "VR Gaming",
       owner_id: demo_user_1.id
     )
 
     workspace_5 = Workspace.create!(
-      name: "Music",
+      name: "Nintendo",
       owner_id: demo_user_2.id
     )
+
 
     puts "Creating workspace subscriptions..."
     WorkspaceSubscription.create!(
       workspace_id: workspace_1.id,
       user_id: demo_user_1.id
-    )
-
-    WorkspaceSubscription.create!(
-      workspace_id: workspace_1.id,
-      user_id: demo_user_2.id
     )
     
     WorkspaceSubscription.create!(
@@ -117,8 +113,43 @@ ApplicationRecord.transaction do
     )
 
     WorkspaceSubscription.create!(
+      workspace_id: workspace_1.id,
+      user_id: demo_user_2.id
+    )
+
+    WorkspaceSubscription.create!(
+      workspace_id: workspace_3.id,
+      user_id: demo_user_2.id
+    )
+
+    WorkspaceSubscription.create!(
       workspace_id: workspace_5.id,
       user_id: demo_user_2.id
+    )
+
+    WorkspaceSubscription.create!(
+      workspace_id: workspace_1.id,
+      user_id: dilang.id
+    )
+    
+    WorkspaceSubscription.create!(
+      workspace_id: workspace_2.id,
+      user_id: dilang.id
+    )
+
+    WorkspaceSubscription.create!(
+      workspace_id: workspace_3.id,
+      user_id: dilang.id
+    )
+
+    WorkspaceSubscription.create!(
+      workspace_id: workspace_4.id,
+      user_id: dilang.id
+    )
+
+    WorkspaceSubscription.create!(
+      workspace_id: workspace_5.id,
+      user_id: dilang.id
     )
 
     puts "Creating channels..."
@@ -165,12 +196,27 @@ ApplicationRecord.transaction do
     workspace_id: workspace_3.id
     )
 
+    workspace_3_elden_ring = Channel.create!(name: 'elden ring', description: '', 
+    owner_id: demo_user_1.id, 
+    workspace_id: workspace_3.id
+    )
+
+    workspace_3_sekiro = Channel.create!(name: 'sekiro : shadows die twice', description: '', 
+    owner_id: demo_user_1.id, 
+    workspace_id: workspace_3.id
+    )
+
     workspace_4_general = Channel.create!(name: 'general', description: 'This is the one channel that will always include everyone. It’s a great spot for announcements and team-wide conversations.', 
     owner_id: demo_user_1.id, 
     workspace_id: workspace_4.id
     )
 
     workspace_4_random = Channel.create!(name: 'random', description: 'This channel is for... well, everything else. It’s a place for team jokes, spur-of-the-moment ideas, and funny GIFs. Go wild!', 
+    owner_id: demo_user_1.id, 
+    workspace_id: workspace_4.id
+    )
+
+    workspace_4_beat_saber = Channel.create!(name: 'beat saber', description: '',
     owner_id: demo_user_1.id, 
     workspace_id: workspace_4.id
     )
@@ -182,6 +228,16 @@ ApplicationRecord.transaction do
 
     workspace_5_random = Channel.create!(name: 'random', description: 'This channel is for... well, everything else. It’s a place for team jokes, spur-of-the-moment ideas, and funny GIFs. Go wild!', 
     owner_id: demo_user_2.id, 
+    workspace_id: workspace_5.id
+    )
+
+    workspace_5_zelda = Channel.create!(name: 'zelda', description: '',
+    owner_id: dilang.id, 
+    workspace_id: workspace_5.id
+    )
+
+    workspace_5_smash = Channel.create!(name: 'super smash bros. ultimate', description: '',
+    owner_id: dilang.id, 
     workspace_id: workspace_5.id
     )
 
@@ -227,6 +283,19 @@ ApplicationRecord.transaction do
     )
 
     ChannelSubscription.create!(
+      channel_id: workspace_3_elden_ring.id,
+      user_id: demo_user_1.id
+    )
+    ChannelSubscription.create!(
+      channel_id: workspace_3_sekiro.id,
+      user_id: demo_user_1.id
+    )
+    ChannelSubscription.create!(
+      channel_id: workspace_3_random.id,
+      user_id: demo_user_1.id
+    )
+
+    ChannelSubscription.create!(
       channel_id: workspace_4_general.id,
       user_id: demo_user_1.id
     )
@@ -237,14 +306,81 @@ ApplicationRecord.transaction do
     )
 
     ChannelSubscription.create!(
+      channel_id: workspace_4_beat_saber.id,
+      user_id: demo_user_1.id
+    )
+    
+    
+    ChannelSubscription.create!(
       channel_id: workspace_5_general.id,
       user_id: demo_user_1.id
     )
-
+    
     ChannelSubscription.create!(
       channel_id: workspace_5_random.id,
       user_id: demo_user_1.id
+      )
+
+    ChannelSubscription.create!(
+      channel_id: workspace_5_zelda.id,
+      user_id: demo_user_1.id
     )
+    ChannelSubscription.create!(
+      channel_id: workspace_5_smash.id,
+      user_id: demo_user_1.id
+    )
+
+    workspace_1.channels.each do |channel| 
+      ChannelSubscription.create!(
+      channel_id: channel.id,
+      user_id: demo_user_2.id)
+    end
+    
+
+    workspace_3.channels.each do |channel| 
+      ChannelSubscription.create!(
+      channel_id: channel.id,
+      user_id: demo_user_2.id)
+    end
+
+    workspace_5.channels.each do |channel| 
+      ChannelSubscription.create!(
+      channel_id: channel.id,
+      user_id: demo_user_2.id)
+    end
+
+
+    ChannelSubscription.create!(
+      channel_id: workspace_1_general.id,
+      user_id: dilang.id
+    )
+    ChannelSubscription.create!(
+      channel_id: workspace_1_random.id,
+      user_id: dilang.id
+    )
+
+    workspace_2.channels.each do |channel| 
+      ChannelSubscription.create!(
+      channel_id: channel.id,
+      user_id: dilang.id)
+    end
+
+    ChannelSubscription.create!(
+      channel_id: workspace_3_elden_ring.id,
+      user_id: dilang.id
+    )
+    ChannelSubscription.create!(
+      channel_id: workspace_4_beat_saber.id,
+      user_id: dilang.id
+    )
+    ChannelSubscription.create!(
+      channel_id: workspace_5_zelda.id,
+      user_id: dilang.id
+    )
+    ChannelSubscription.create!(
+      channel_id: workspace_5_smash.id,
+      user_id: dilang.id
+      )
     
     puts "Creating messages..."
     Message.create!(
