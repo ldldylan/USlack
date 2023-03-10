@@ -22,7 +22,7 @@ export default function CreateworkspaceModal({showCreateForm, setShowCreateForm}
         setName("");
         dispatch(getUser())
     };
-    
+    0
     const openModal = (e) => {
         e.stopPropagation();
     };

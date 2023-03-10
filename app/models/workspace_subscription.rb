@@ -1,7 +1,6 @@
 # == Schema Information
 #
 # Table name: workspace_subscriptions
-#
 #  id           :bigint           not null, primary key
 #  workspace_id :bigint           not null
 #  user_id      :bigint           not null

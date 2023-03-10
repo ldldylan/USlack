@@ -64,6 +64,9 @@ export default function WorkspaceSelection() {
                             </div>
                         </div>
                     </div>
+                    <div className="">
+                        
+                    </div>
                 </section>
             </div>
         </>

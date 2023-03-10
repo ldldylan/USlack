@@ -161,5 +161,18 @@
     display: flex;
     justify-content: space-between;
     background-color: white;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    border-bottom: 1px solid #ebeaeb;
 }
 
+.workspace-name-and-button h1 {
+    /* text-align: center;
+    vertical-align: center;
+    line-height: 1.2857; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+}

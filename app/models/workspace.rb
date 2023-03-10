@@ -2,7 +2,7 @@
 #
 # Table name: workspaces
 #
-#  id         :bigint           not null, primary key
+#  id         :bigint    image.png       not null, primary key
 #  name       :string           not null
 #  owner_id   :bigint           not null
 #  created_at :datetime         not null

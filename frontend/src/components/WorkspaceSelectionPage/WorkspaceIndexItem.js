@@ -10,7 +10,7 @@ export default function WorkspaceIndexItem({subscriptWorkspace}) {
 
     return (
     <div className='workspace-name-and-button'>
-        <h1 >{subscriptWorkspace.name}</h1>
+        <h1>{subscriptWorkspace.name}</h1>
         <NavLink to={`/clients/${currentUser.id}/workspaces/${subscriptWorkspace.id}`} className="launch-workspace-button">LAUNCH USLACK</NavLink>
     </div>
 )
