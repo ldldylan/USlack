@@ -42,6 +42,13 @@ ApplicationRecord.transaction do
       title: "front-end developer" 
     )
 
+    dilang = User.create!(
+      display_name: 'Dilang', 
+      email: 'dilang@user.io', 
+      password: 'password',
+      title: "Full Stack Developer" 
+    )
+
     # More users
     # 10.times do 
     #   User.create!({
@@ -67,7 +74,7 @@ ApplicationRecord.transaction do
       name: "Front-end development",
       owner_id: demo_user_1.id
     )
-
+    
     workspace_4 = Workspace.create!(
       name: "Movies",
       owner_id: demo_user_1.id
