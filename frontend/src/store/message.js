@@ -80,7 +80,8 @@ export const deleteMessage = (messageId) => async dispatch => {
 export default function messageReducer(state = {}, action) {
     switch (action.type) {
         case RECEIVE_CHANNEL:
-            return action.payload.messages
+            if(action.payload.messages) return action.payload.messages
+            else return state
         case RECEIVE_MESSAGES:
             return {...action.messages}
         case RECEIVE_MESSAGE:

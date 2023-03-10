@@ -1,15 +1,17 @@
 class Api::ChannelsController < ApplicationController
     def show
         @channel = Channel.find_by_id(params[:id])
+        # debugger
         render :show
     end
     
     def create
+        # debugger
         @channel = Channel.new(channel_params)
         @channel.owner_id = current_user.id
         @channel.workspace_id = params[:workspace_id]
         @workspace = Workspace.find_by_id(@channel.workspace_id)
-        
+        @channel.messages = nil
         if @channel.save
             # debugger
             @workspace.users.each do |user| 

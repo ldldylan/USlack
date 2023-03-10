@@ -3,6 +3,7 @@ json.channel do
 end
 
 json.messages do
+    # debugger
     @channel.messages.each do |message|
         json.set! message.id do 
             json.extract! message, :id, :text, :author_id, :messageable_type, :messageable_id, :updated_at

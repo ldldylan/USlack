@@ -61,7 +61,7 @@ export const fetchChannel = (channelId) => async dispatch => {
 export const createChannel = (channel) => async dispatch => {
         const response = await csrfFetch(`/api/channels`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+            headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(channel)
     });
 
@@ -109,6 +109,7 @@ export default function channelReducer(state = {}, action) {
             
         case RECEIVE_CHANNEL:
             const channel = action.payload.channel
+            // debugger
             return {...state, [channel.id]: channel};
             
         case REMOVE_CHANNEL:
