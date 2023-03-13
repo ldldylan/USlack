@@ -55,7 +55,7 @@ export const createMessage = (message) => async dispatch => {
 }
 
 export const updateMessage = (message) => async dispatch => {
-    debugger
+    // debugger
     const response = await csrfFetch(`/api/messages/${message.id}`, {
         method: "PATCH",
         body: JSON.stringify(message)
@@ -68,7 +68,7 @@ export const updateMessage = (message) => async dispatch => {
 }
 
 export const deleteMessage = (messageId) => async dispatch => {
-    debugger
+    // debugger
     const response = await csrfFetch(`/api/messages/${messageId}`, {
         method: "DELETE"
     })
