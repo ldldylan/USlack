@@ -73,6 +73,10 @@
     box-sizing: border-box;
 }
 
+.signup-errors {
+    color: red;
+}
+
 .signup-button {
     background-color: #4a154b;
     border: none;

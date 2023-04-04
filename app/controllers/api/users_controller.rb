@@ -15,6 +15,7 @@ class Api::UsersController < ApplicationController
     # render { errors: @user.errors.full_messages } as JSON, with a status of :unprocessable_entity
 
     @user = User.new(user_params)
+    @user.display_name = @user.email.split('@')[0]
     if @user.save
       login!(@user)
       # render json: { user: @user }

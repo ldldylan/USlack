@@ -1,4 +1,4 @@
-import video1 from "../../assests/videos/splash-1.mp4"
+// import video1 from "../../assests/videos/splash-1.mp4"
 // import video2 from "../../assests/videos/splash-2"
 // import video3 from "../../assests/videos/splash-3"
 // import video4 from "../../assests/videos/splash-4"
@@ -17,16 +17,15 @@ import etsy from "../../assests/images/etsy-logo.png"
 import splashVideo1 from "../../assests/videos/splash-1.mp4"
 import splashVideo2 from "../../assests/videos/splash-2.mp4"
 import splashVideo3 from "../../assests/videos/splash-3.mp4"
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 
 
 export default function SplashPage(){
-    const topRef = useRef(null);
 
     const handleScrollToTop = () => {
-        topRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
-
+    
     return (
         <>
             <section className="splash-page">
@@ -39,7 +38,7 @@ export default function SplashPage(){
                         </NavLink>
                         {/* <div className="author-links-container"> */}
                             <a id="github-link" href="https://github.com/ldldylan/USlack" target="_blank">Github-Repo</a>
-                            <a id="linkedin-link" href="https://github.com/ldldylan/USlack" target="_blank">LinkedIn</a>
+                        <a id="linkedin-link" href="https://www.linkedin.com/in/dilanglin/" target="_blank">LinkedIn</a>
                         {/* </div> */}
                         <NavLink to="/login" className="splash-login-button">Sign In</NavLink>
                         <NavLink to="/signup" className="splash-signup-button">Sign Up</NavLink>
@@ -176,7 +175,7 @@ export default function SplashPage(){
                 </section>
                 <section className="section-5">
                     <div className="section-5-content">
-                        <div onClick={handleScrollToTop} ref={topRef} style={{ cursor: "pointer" }}>
+                        <div id="scroll-to-top" onClick={handleScrollToTop} style={{ cursor: "pointer" }}>
                             <img src={splashLogo} alt="logo" />
                         </div>
                         <a

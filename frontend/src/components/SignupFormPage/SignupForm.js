@@ -79,10 +79,10 @@ function SignupFormPage() {
                 placeholder="comfirm password"
                 required
                 />
-                <button className="signup-button" type="submit">Sign Up</button>
-                <ul>
+                <ul className="signup-errors">
                     {errors.map(error => <li key={error}>{error}</li>)}
                 </ul>
+                <button className="signup-button" type="submit">Sign Up</button>
             </form>
             <div className="login-option">
                 <p>Already using USlack?</p>
