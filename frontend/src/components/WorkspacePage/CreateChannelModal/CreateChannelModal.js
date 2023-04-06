@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { createChannel } from "../../../store/channels";
 import { getUser } from "../../../store/session";
+import './CreateChannelModal.css'
+import CrossIcon from "../../Svgs/CrossIcon.js";
 export default function CreateChannelModal({showCreateForm, setShowCreateForm}) {
     const dispatch = useDispatch()
     const currentUser = useSelector((state) => state.session.user)
@@ -35,13 +37,25 @@ export default function CreateChannelModal({showCreateForm, setShowCreateForm}) 
         e.preventDefault();
         setShowCreateForm(false);
     };
+
+    const handleCloseModal = () => {
+        setName("");
+        setDescription("");
+        // handleAddChannelModal();
+        setShowCreateForm(false);
+    };
     
     return (
     <>
         <div className="create-channel-modal" onClick={closeModal}>
+                <div className="create-channel-modal-header-container">
+                    <h1 className="create-channel-modal-header">Create a channel</h1>
+                    <button onClick={handleCloseModal} className="cross-btn">
+                        <CrossIcon size={22} />
+                    </button>
+                </div>
             <div className="create-channel-form" onClick={openModal}>
-                <h1>Create a channel</h1>
-                <p>Channels are where your team communicates. They're best when organized around a topic — #marketing, for example.</p>
+                    <p id="info-create-channel">Channels are where your team communicates. They're best when organized around a topic — #marketing, for example.</p>
                 <div>
                     <form onSubmit={handleCreateNewChannel}>
                         <div className="new-channel-name">

@@ -6,13 +6,13 @@ class Api::ChannelsController < ApplicationController
     end
     
     def create
-        debugger
+        # debugger
         @channel = Channel.new(channel_params)
         @channel.owner_id = current_user.id
         @channel.workspace_id = params[:workspace_id]
         @workspace = Workspace.find_by_id(@channel.workspace_id)
         if @channel.save
-            debugger
+            # debugger
             @workspace.users.each do |user| 
                 @channel_subscription = ChannelSubscription.create(channel_id: @channel.id, user_id: user.id)
             end

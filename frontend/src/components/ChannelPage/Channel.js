@@ -117,14 +117,12 @@ export default function Channel() {
                             </span>
                             <span id="add-channels-word">Add channels</span>
                         </div>
-                        <div>
+                        <div className={showCreateChannelModal ? "create-channel-modal-container" : "hide"}>
                             {showCreateChannelModal ? (
-                                <div>
                                     <CreateChannelModal
                                         showCreateForm={showCreateChannelModal}
                                         setShowCreateForm={setShowCreateChannelModal}
                                     />
-                                </div>
                             ) : null}
                         </div>
                     </section>
