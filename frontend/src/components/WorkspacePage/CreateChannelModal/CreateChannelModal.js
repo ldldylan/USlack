@@ -13,6 +13,17 @@ export default function CreateChannelModal({showCreateForm, setShowCreateForm}) 
     const [description, setDescription] = useState("");
     const [errors, setErrors] = useState([]);
 
+    const openModal = (e) => {
+        e.stopPropagation();
+    };
+
+    const closeModal = (e) => {
+        e.preventDefault();
+        setName("");
+        setDescription("");
+        setShowCreateForm(false);
+    };
+
     const handleCreateNewChannel = (e) => {
         e.preventDefault();
         setErrors([]);
@@ -26,40 +37,26 @@ export default function CreateChannelModal({showCreateForm, setShowCreateForm}) 
 
         setName("");
         setDescription("");
-        dispatch(getUser())
-    };
-    
-    const openModal = (e) => {
-        e.stopPropagation();
-    };
-
-    const closeModal = (e) => {
-        e.preventDefault();
-        setShowCreateForm(false);
-    };
-
-    const handleCloseModal = () => {
-        setName("");
-        setDescription("");
-        // handleAddChannelModal();
+        dispatch(getUser());
         setShowCreateForm(false);
     };
     
+
     return (
     <>
-        <div className="create-channel-modal" onClick={closeModal}>
+        <div className="create-channel-modal">
                 <div className="create-channel-modal-header-container">
                     <h1 className="create-channel-modal-header">Create a channel</h1>
-                    <button onClick={handleCloseModal} className="cross-btn">
+                    <button onClick={closeModal} className="cross-btn">
                         <CrossIcon size={22} />
                     </button>
                 </div>
-            <div className="create-channel-form" onClick={openModal}>
+                <div className="create-channel-info">
                     <p id="info-create-channel">Channels are where your team communicates. They're best when organized around a topic — #marketing, for example.</p>
                 <div>
                     <form onSubmit={handleCreateNewChannel}>
                         <div className="new-channel-name">
-                            <label>Name</label>
+                            <p className="label">Name</p>
                             <input className="new-channel-name-input"
                                     value={name}
                                     placeholder="# e.g. plan-budget"
@@ -67,13 +64,15 @@ export default function CreateChannelModal({showCreateForm, setShowCreateForm}) 
                             </input>
                         </div>
                         <div className="new-channel-description">
-                            <label>Description</label>
-                            <span>{"(optional)"}</span>
+                            <div className="new-channel-description-label">
+                                <p className="label">Description</p>
+                                <span className="clear-text">{"(optional)"}</span>
+                            </div>
                             <input className="new-channel-description-input"
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}>
                             </input>
-                            <p id='about-text'>What's this channel about?</p>
+                                <p className="clear-text">What's this channel about?</p>
                         </div>
                         <div>
                             <button

@@ -60,8 +60,40 @@
     background: rgba(21, 20, 21, 0.476);
 }
 
+.create-channel-info {
+    padding: 10px 24px;
+}
+
 #info-create-channel {
     color: #616061;
     font-size: 15px;
     margin-bottom: 24px;
+}
+
+.label {
+    font-weight: 600;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.new-channel-name-input, .new-channel-description-input {
+    border: 1px solid rgba(21, 20, 21, .171);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: 80%;
+    font-family: Lato, sans-serif;
+    font-size: 15px;
+    text-indent: 20px;
+    height: 25px;
+}
+
+.new-channel-description-label {
+    display: flex;
+    align-items: center;
+}
+
+.clear-text {
+    /* vertical-align: baseline; */
+    color: #616061;
+    font-size: 15px;
 }
