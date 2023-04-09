@@ -80,7 +80,7 @@
     border: 1px solid rgba(21, 20, 21, .171);
     border-radius: 4px;
     margin-bottom: 10px;
-    width: 80%;
+    width: 90%;
     font-family: Lato, sans-serif;
     font-size: 15px;
     text-indent: 20px;
@@ -96,4 +96,23 @@
     /* vertical-align: baseline; */
     color: #616061;
     font-size: 15px;
+}
+
+.create-channel-button-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.create-channel-button {
+    align-items: center;
+    border: 1px solid rgba(21, 20, 21, .295);
+    border-radius: 4px;
+    display: flex;
+    font-size: 15px;
+    font-weight: 700;
+    height: 36px;
+    justify-content: center;
+    min-width: 70px;
+    padding: 10px 20px;
 }
