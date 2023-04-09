@@ -74,12 +74,12 @@ export default function CreateChannelModal({showCreateForm, setShowCreateForm}) 
                             </input>
                                 <p className="clear-text">What's this channel about?</p>
                         </div>
-                        <div>
+                        <div className="create-channel-button-container">
                             <button
                             disabled={name.trim().length < 1} 
                             className={`create-channel-button ${name.trim().length > 0 ? "-clickable" : ""
                             }`}
-                            >Create
+                                ><p>Create</p>
                             </button>
                         </div>
                     </form>
