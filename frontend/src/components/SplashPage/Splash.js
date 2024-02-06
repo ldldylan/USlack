@@ -39,7 +39,7 @@ export default function SplashPage(){
                         {/* <div className="author-links-container"> */}
                         <a id="github-link" href="https://github.com/ldldylan/USlack" target="_blank">Github-Repo</a>
                         <a id="linkedin-link" href="https://www.linkedin.com/in/dilanglin/" target="_blank">LinkedIn</a>
-                        <a id="porfile-link" href="https://ldldylan.github.io/Portfolio/" target="_blank">Porfile</a>
+                        <a id="portfolio-link" href="https://ldldylan.github.io/Portfolio/" target="_blank">Portfolio</a>
 
                         {/* </div> */}
                         <NavLink to="/login" className="splash-login-button">Sign In</NavLink>
